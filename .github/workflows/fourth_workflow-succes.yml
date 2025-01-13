@@ -12,13 +12,13 @@ on:
 jobs:
   success-command:
     runs-on: ubuntu-latest
-    # Условие выполнения шагов в job
+    # Условие выполнения при успешном завершении Third Workflow
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - run: echo "Success"
   false-command:
     runs-on: ubuntu-latest
-    # Условие выполнения шагов в job
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    # Условие выполнения при неуспешном завершении Third Workflow
+    if: ${{ github.evenworkflow_run.conclusion == 'failure' }}
     steps:
       - run: echo "False"
