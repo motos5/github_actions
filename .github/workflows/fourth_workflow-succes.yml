@@ -1,0 +1,24 @@
+# Задаём имя workflow
+name: Fourth Workflow Success
+on:
+  # Команда, которая запускает workflow при завершении работы другого workflow
+  workflow_run:
+    # Имя workflow, завершение которого запускает текущий workflow
+    workflows: ["Third Workflow"]
+    # Тип завершения workflow, которое запускает текущий workflow
+    types:
+      - completed
+
+jobs:
+  success-command:
+    runs-on: ubuntu-latest
+    # Условие выполнения шагов в job
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: echo "Success"
+  false-command:
+    runs-on: ubuntu-latest
+    # Условие выполнения шагов в job
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo "False"
