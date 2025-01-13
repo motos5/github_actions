@@ -1,0 +1,17 @@
+# Задаём имя workflow
+name: Fourth Workflow
+on:
+  # Команда, которая запускает workflow при завершении работы другого workflow
+  workflow_run:
+    # Имя workflow, завершение которого запускает текущий workflow
+    workflows: ["Third Workflow"]
+    # Тип завершения workflow, которое запускает текущий workflow
+    types:
+      - completed
+
+jobs:
+  hello-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello
+        run: echo "Hello, world!"
